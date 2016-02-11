@@ -51,7 +51,7 @@ var shape_colors = ["#00FFFF",
 
 var canvas = document.getElementById("tetrisCanvas");
 var ctx = canvas.getContext("2d");
-var width = canvas.width, height = canvas.height;
+var width = canvas.width, height = canvas.height, play_height = .8 * height;
 var cols = 10, rows = 22;
 var board = new Array(rows);
 var sc = 0, sr = 0;
@@ -196,13 +196,22 @@ function drawBoard() {
     for (var i = 0; i < rows; i++) {
 	for (var j = 0; j < cols; j++) {
 	    ctx.fillStyle = (board[i][j] > 0) ? shape_colors[board[i][j] - 1] : "#000000";
-	    ctx.fillRect(j * (width / cols), i * (height / rows), (width / cols), (height / rows));
+	    ctx.fillRect(j * (width / cols), i * (play_height / rows), (width / cols), (play_height / rows));
 	}}
     
     for (var i = 0; i < shape.length; i++) {
 	for (var j = 0; j < shape.length; j++) {
 	    if (shape[i][j] > 0) {
 		ctx.fillStyle = shape_colors[k];
-		ctx.fillRect((j+sc) * (width / cols), (i+sr) * (height / rows), (width / cols), (height / rows));
-	    }}}}
+		ctx.fillRect((j+sc) * (width / cols), (i+sr) * (play_height / rows), (width / cols), (play_height / rows));
+	    }}}
+    
+    ctx.fillStyle = "blue";
+    ctx.fillRect(0, play_height, width, height - play_height);
+    ctx.font = "30px Arial";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.fillText(score, 20, play_height + 50);
+}
+
 
