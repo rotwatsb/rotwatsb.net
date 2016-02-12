@@ -65,27 +65,46 @@ var k = 0, nk = 0;
 var background_color = "#000000";
 
 
-window.addEventListener('keypress', function (e) {
-    if (e.keyCode == 37 || e.charCode == 65) {
+window.addEventListener('keydown', function (e) {
+    if (e.keyCode == 37) {
 	if (!collision(-1, 0)) {
 	    sc--;
 	}}
-    else if (e.keyCode == 39 || e.charCode == 68) {
+    else if (e.keyCode == 65) {
+	if (!collision(-1, 0)) {
+	    sc--;
+	}}
+    else if (e.keyCode == 39) {
 	if (!collision(1, 0)) {
 	    sc++;
 	}}
-    else if (e.keyCode == 38 || e.charCode == 87) {
+    else if (e.keyCode == 68) {
+	if (!collision(1, 0)) {
+	    sc++;
+	}}
+    else if (e.keyCode == 38) {
 	rotate();
 	if (collision(0, 0)) {
 	    rotate();
 	    rotate();
 	    rotate();
 	}}
-    else if (e.keyCode == 40 || e.charCode == 83) {
+    else if (e.keyCode == 87) {
+	rotate();
+	if (collision(0, 0)) {
+	    rotate();
+	    rotate();
+	    rotate();
+	}}
+    else if (e.keyCode == 40) {
 	if (!collision(0, 1)) {
 	    sr++;
 	}}
-    else if (e.charCode == 32) {
+    else if (e.keyCode == 83) {
+	if (!collision(0, 1)) {
+	    sr++;
+	}}
+    else if (e.keyCode == 32) {
 	while (!collision(0, 1)) {
 	    sr++;
 	}}
