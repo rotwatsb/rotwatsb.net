@@ -63,6 +63,7 @@ var sc = 0, sr = 0; //"shape row" and "shape col"
 var score = 0;
 var k = 0, nk = 0;
 var background_color = "#000000";
+var is_paused = false;
 
 
 window.addEventListener('keydown', function (e) {
@@ -108,6 +109,9 @@ window.addEventListener('keydown', function (e) {
 	while (!collision(0, 1)) {
 	    sr++;
 	}}
+    else if (e.keyCode == 80) {
+	is_paused = !is_paused;
+    }
     drawBoard();
 }, false);
 
@@ -173,17 +177,22 @@ function reset() {
 }
 
 function moveDown() {
-    sr++;
-    if (collision(0,0)){
-	sr--;
-	pieceToBoard();
-	clearLines();
-	sc = (board[0].length / 2) - (shape.length / 2);
-	sr = 0;
-	updateShape()
-	selectNextShape(next_shape);
+    if (!is_paused) {
+	sr++;
+	if (collision(0,0)){
+	    sr--;
+	    pieceToBoard();
+	    clearLines();
+	    sc = (board[0].length / 2) - (shape.length / 2);
+	    sr = 0;
+	    updateShape()
+	    selectNextShape(next_shape);
+	}
+	drawBoard();
     }
-    drawBoard();
+    else {
+	drawPauseScreen();
+    }
 }
 
 function updateShape() {
@@ -246,6 +255,15 @@ function clearBoard() {
 	for (var j = 0; j < cols; j++) {
 	    board[i][j] = 0;
 	}}}
+
+function drawPauseScreen() {
+    ctx.fillStyle = shape_colors[k];
+    ctx.fillRect(0,0,width,height);
+    ctx.font = "50px Arial";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "left";
+    ctx.fillText("Paused", width / 2 - 100, height / 2 + 25);
+}
 
 function drawBoard() {
     // draw board
