@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8">
     <title>ROTWATSB.NET</title>
-    <link rel="stylesheet" type="text/css" href="tetris.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
   </head>
   <body>
-    <canvas id="hilbertCanvas" width="400" height="400"
-	    style="border:1px solid #000000;">
-    </canvas>
-    <canvas id="tetrisCanvas" width="400" height="700"
-	    style="border:1px solid #000000;">
-    </canvas>
+    <div id="hilbert_div">
+      <canvas id="hilbert_canvas" width="1500" height="800"></canvas>
+    </div>
+    <div id="tetris_div">
+      <canvas id="tetris_canvas" width="400" height="700"></canvas>
+    </div>
     <script src="hilbert.js"></script>
     <script src="tetris.js"></script>
   </body>

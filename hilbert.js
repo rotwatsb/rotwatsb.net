@@ -1,8 +1,8 @@
 
-var canvas = document.getElementById("hilbertCanvas");
+var canvas = document.getElementById("hilbert_canvas");
 var ctx = canvas.getContext("2d");
-var n = 4;
-var width = canvas.width, height = canvas.height;
+var n = 5;
+var width = canvas.width, height = canvas.width;
 var line_color = "0xFFFFFF";
 var background_color = "0xFFFFFF";
 var rot_right = [[0, 1], [-1, 0]];
@@ -13,7 +13,6 @@ var temp_transform = [[0,0],[0,0]];
 begin();
 
 function begin() {
-    console.log("hello");
     ctx.fillStyle = background_color;
     ctx.fillRect = (0, 0, width, height);
     ctx.beginPath();

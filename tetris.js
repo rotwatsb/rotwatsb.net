@@ -54,13 +54,14 @@ var shape_colors = ["#00FFFF",
 		    "#FF0000",
 		    "#800080"];
 
-var canvas = document.getElementById("tetrisCanvas");
+var canvas = document.getElementById("tetris_canvas");
 var ctx = canvas.getContext("2d");
 var width = canvas.width, height = canvas.height, play_height = .9 * height;
 var cols = 10, rows = 22;
 var board = new Array(rows);
 var sc = 0, sr = 0; //"shape row" and "shape col"
-var score = 0;
+var score = 0, level = 100, time_interval = 100, level_interval = 100;
+var timer;
 var k = 0, nk = 0;
 var background_color = "#000000";
 var is_paused = false;
@@ -136,6 +137,13 @@ function clearLines() {
 
 function scoreLines(lines) {
     score+=Math.pow(2, 2 * lines);
+    if (score > level) {
+	level+=level_interval;
+	clearInterval(timer);
+	time_interval*=.8;
+	timer = setInterval(function(){moveDown();}, time_interval);
+    }
+    
 }
 
 function deleteLine(line) {
@@ -164,16 +172,20 @@ function begin() {
     initBoard();
     clearBoard();
     reset();
-    setInterval(function(){moveDown();}, 800);
 }
 
 function reset() {
     score = 0;
+    level = 100;
+    time_interval = 1000;
+    level_interval = 100;
+    clearInterval(timer);
     selectNextShape(next_shape);
     updateShape();
     selectNextShape(next_shape);
     sc = (board[0].length / 2) - (shape.length / 2);
     sr = 0;
+    timer = setInterval(function(){moveDown();}, time_interval);
 }
 
 function moveDown() {

@@ -1,0 +1,25 @@
+body {
+    background-color: #d0e4fe;
+}
+
+#tetris_canvas {
+    border: 5px solid #4747d1;
+}
+
+#hilbert_canvas {
+    width: 1520px;
+}
+
+#hilbert_div {
+    text-align: center;
+    position: absolute;
+    display: block;
+    margin: auto;
+}
+
+#tetris_div {
+    text-align: center;
+    position: relative;
+    display: block;
+    margin: auto;
+}
