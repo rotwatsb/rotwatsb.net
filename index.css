@@ -6,16 +6,9 @@ body {
     border: 5px solid #4747d1;
 }
 
-#hilbert_div {
-    text-align: center;
-    position: absolute;
-    display: block;
-    margin: auto;
-}
-
 #tetris_div {
     text-align: center;
-    position: relative;
     display: block;
     margin: auto;
+    border: 5px solid #4747d1;
 }
